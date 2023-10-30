@@ -3,18 +3,23 @@ package cz.gyarab.e4prg.s1;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyHistoryTest {
+    @TempDir
+    Path pomocnyAdresar;
+
     @Test
     void read() {
-        MyHistory h = new MyHistory("abc");
+        MyHistory h = new MyHistory(pomocnyAdresar + "\\abc.dat");
 
         assertThrows(IOException.class, () -> h.read());
-
     }
 
 

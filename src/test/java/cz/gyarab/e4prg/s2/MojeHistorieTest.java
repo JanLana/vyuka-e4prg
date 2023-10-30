@@ -2,28 +2,52 @@ package cz.gyarab.e4prg.s2;
 
 import cz.gyarab.e4prg.s1.MyHistory;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MojeHistorieTest {
 
+    @TempDir
+    private Path tmpDir;
+
     @Test
-    void read() {
-        MojeHistorie h = new MojeHistorie("abc");
+    void readTest() {
+        //File tmpDir = new File("tmp");
+        //tmpDir.mkdir();
+
+        MojeHistorie h = new MojeHistorie(tmpDir + "/readTest.data");
+        System.out.println(h.filename);
+
         assertThrows(IOException.class, () -> h.read());
 
-//        try {
-//            h.read();
-//            System.out.println("Chyba!!!");
-//        } catch (IOException e) {
-//            System.out.println("ok");
-//        }
+        // smaz tmpDir
     }
 
     @Test
-    void addLine() {
+    void saveTest() {
+        MojeHistorie h = new MojeHistorie(tmpDir +"/readTest.data");
+        System.out.println(h.filename);
+
+
+        try {
+            h.save();
+        } catch (IOException e) {
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    void saveAndReadTest() {
+
+    }
+
+    @Test
+    void addLineTest() {
         MojeHistorie h = new MojeHistorie("abc");
         h.addLine("radek 1");
 
@@ -31,7 +55,7 @@ class MojeHistorieTest {
     }
 
     @Test
-    void addMoreLines() {
+    void addMoreLinesTest() {
         MojeHistorie h = new MojeHistorie("abc");
         h.addLine("radek 1");
         h.addLine("radek 2");
@@ -41,7 +65,7 @@ class MojeHistorieTest {
     }
 
     @Test
-    void duplicityLines() {
+    void duplicityLinesTest() {
         MojeHistorie h = new MojeHistorie("abc");
         h.addLine("radek 1");
         h.addLine("radek 2");

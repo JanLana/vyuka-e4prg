@@ -3,25 +3,22 @@ package cz.gyarab.e4prg.s1;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MyHistory {
     String fileName;
-    Set<String> data;
+    Set<String> index;
+    List<String> data;
+
 
     public MyHistory(String fileName) {
         this.fileName = fileName;
-        data = new HashSet<>();
+        index = new HashSet<>();
+        data = new ArrayList<>();
     }
 
-    public void read() {
-        try {
-            data = new HashSet<>(Files.readAllLines(Paths.get(fileName)));
-        } catch(IOException ex) {
-        }
+    public void read() throws IOException {
+            data = Files.readAllLines(Paths.get(fileName));
     }
 
     public void save() throws IOException {
@@ -29,6 +26,11 @@ public class MyHistory {
     }
 
     public void addLine(String str) {
+        if (index.contains(str)) {
+            return;
+        }
+
+        index.add(str);
         data.add(str);
     }
 
