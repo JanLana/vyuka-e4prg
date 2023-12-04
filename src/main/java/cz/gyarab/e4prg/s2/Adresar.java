@@ -10,7 +10,7 @@ public class Adresar {
         execute("CREATE TABLE user (id INTEGER PRIMARY KEY, jmeno VARCHAR)");
     }
 
-    private void execute(String sql, String ...args) throws SQLException {
+    public void execute(String sql, String ...args) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             for (int i = 0; i < args.length; i++) {
                 stmt.setString(i+1, args[i]);
