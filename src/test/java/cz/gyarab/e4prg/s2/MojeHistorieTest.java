@@ -1,6 +1,5 @@
 package cz.gyarab.e4prg.s2;
 
-import cz.gyarab.e4prg.s1.MyHistory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
