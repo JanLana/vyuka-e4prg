@@ -17,4 +17,8 @@ public class MyMinTest {
         int out = MyMin.min(-1, -2);
         assertEquals(-2, out);
     }
+
+    public void nedelaNic() {
+
+    }
 }
